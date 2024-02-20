@@ -1,6 +1,5 @@
 import json
 import os
-from sys import getsizeof
 from typing import Mapping, Sequence
 
 import numpy as np
@@ -48,7 +47,7 @@ def recursive_update_metadata(
             metadata["data"] = []
 
             if block_size is None:
-                metadata["block_size"] = max(block_bytes // getsizeof(block), 1)
+                metadata["block_size"] = max(block_bytes // block.nbytes, 1)
             else:
                 metadata["block_size"] = block_size
 
